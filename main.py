@@ -1,6 +1,9 @@
 import sqlite3
 import hashlib
 import os
+from flask import Flask, render_template, request 
+app = Flask(__name__)
+
 
 conn = sqlite3.connect('country.db')
 c = conn.cursor()
