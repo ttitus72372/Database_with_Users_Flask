@@ -1,0 +1,26 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+    <title>Users</title>  
+</head>  
+<body>  
+ 
+<table border=5>  
+    <thead>
+      <td><strong>User</strong></td>  
+    </thead>  
+      
+    {% for row in rows %}  
+      
+        <tr>   
+            <td>{{row["name"]}}</td>  
+        </tr>  
+      
+    {% endfor %}  
+</table>  
+<br><br>  
+  
+<a href="/">Go back to home page</a>  
+  
+</body>  
+</html> 

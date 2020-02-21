@@ -1,13 +1,73 @@
 import sqlite3
-import hashlib
-import os
+#import hashlib
+#import os
 from flask import Flask, render_template, request 
 app = Flask(__name__)
 
 
 conn = sqlite3.connect('country.db')
 c = conn.cursor()
+conn.close
 
+@app.route("/")  
+def index():  
+    return render_template("index.html")
+
+@app.route("/viewCountries")  
+def viewCountries():  
+    con = sqlite3.connect("country.db")  
+    con.row_factory = sqlite3.Row  
+    cur = con.cursor()  
+    cur.execute("select name from country")  
+    rows = cur.fetchall()  
+    return render_template("viewCountries.html",rows = rows)
+
+@app.route("/viewUsers")  
+def viewUsers():  
+    con = sqlite3.connect("country.db")  
+    con.row_factory = sqlite3.Row  
+    cur = con.cursor()  
+    cur.execute("select name from users")  
+    rows = cur.fetchall()  
+    return render_template("viewUsers.html",rows = rows)
+
+@app.route("/viewAll")  
+def viewAll():  
+    con = sqlite3.connect("country.db")  
+    con.row_factory = sqlite3.Row  
+    cur = con.cursor()  
+    cur.execute("select country, user from user_inputs")  
+    rows = cur.fetchall()  
+    return render_template("viewAll.html",rows = rows)
+
+@app.route("/searchUser",methods = ["POST","GET"])  
+def searchUser():
+    msg = "msg"  
+    if request.method == "POST":  
+        try:  
+            user = request.form["user"] 
+            with sqlite3.connect("country.db") as con:  
+                cur = con.cursor()  
+                cur.execute("SELECT country FROM user_inputs WHERE user=?",(user,))  
+                rows = cur.fetchall()
+                msg = user + " has added these countries to the database."
+        except:    
+            msg = "We can not find that user!"  
+        finally:  
+            return render_template("userSearch.html",msg = msg,rows = rows)  
+            con.close()
+
+
+
+
+
+
+if __name__ == "__main__":  
+    app.run(debug = True)
+    
+    
+app.run('0.0.0.0',8080)
+'''
 def sign_in():
   print("Welcome to the Simple Countries Database!")
   choice = int(input("\nChoose an option:\nEnter 1 if you have used this database before.\nEnter 2 if you're new.\nYour option:\t "))
@@ -327,4 +387,4 @@ def option10():
 
 
 sign_in()
-
+'''

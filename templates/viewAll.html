@@ -1,0 +1,29 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+    <title>Who Added What</title>  
+</head>  
+<body>  
+  
+<h3>Countries and which user added them.</h3>  
+<table border=5>  
+    <thead>  
+        <td><strong>Country</strong></td>  
+        <td><strong>User</strong></td>  
+    </thead>  
+      
+    {% for row in rows %}  
+      
+        <tr>  
+            <td>{{row["country"]}}</td>  
+            <td>{{row["user"]}}</td>  
+        </tr>  
+      
+    {% endfor %}  
+</table>  
+<br><br>  
+  
+<a href="/">Go back to home page</a>  
+  
+</body>  
+</html> 
