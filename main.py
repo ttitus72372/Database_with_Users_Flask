@@ -54,7 +54,7 @@ def searchUser():
         except:    
             msg = "We can not find that user!"  
         finally:  
-            return render_template("userSearch.html",msg = msg,rows = rows)  
+            return render_template("userSearch.html",msg=msg,rows=rows)  
             con.close()
 
 
