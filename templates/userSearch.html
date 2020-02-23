@@ -11,12 +11,13 @@
       <td><strong>Countries</strong></td>  
     </thead>  
       
-    {% for row in rows %}  
+    {% for row in rows %}
+      {% for x in row %} 
       
         <tr>   
-            <td>{{row["country"]}}</td>  
+            <td>{{x}}</td>  
         </tr>  
-      
+      {% endfor %}
     {% endfor %}  
 </table>  
 <br><br>  

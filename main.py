@@ -28,7 +28,7 @@ def viewUsers():
     con.row_factory = sqlite3.Row  
     cur = con.cursor()  
     cur.execute("select name from users")  
-    rows = cur.fetchall()  
+    rows = cur.fetchall() 
     return render_template("viewUsers.html",rows = rows)
 
 @app.route("/viewAll")  
@@ -37,7 +37,7 @@ def viewAll():
     con.row_factory = sqlite3.Row  
     cur = con.cursor()  
     cur.execute("select country, user from user_inputs")  
-    rows = cur.fetchall()  
+    rows = cur.fetchall()
     return render_template("viewAll.html",rows = rows)
 
 @app.route("/searchUser",methods = ["POST","GET"])  
@@ -57,7 +57,22 @@ def searchUser():
             return render_template("userSearch.html",msg=msg,rows=rows)  
             con.close()
 
-
+@app.route("/searchCountry",methods = ["POST","GET"])  
+def searchCountry():
+    msg = "msg"  
+    if request.method == "POST":  
+        try:  
+            country = request.form["country"] 
+            with sqlite3.connect("country.db") as con:  
+                cur = con.cursor()  
+                cur.execute("SELECT user FROM user_inputs WHERE country=?",(country,))  
+                user = cur.fetchone()[0]
+                msg = country + " was added to the database by: " + user
+        except:    
+            msg = "We can not find that country!"  
+        finally:  
+            return render_template("countrySearch.html",msg=msg)  
+            con.close()
 
 
 

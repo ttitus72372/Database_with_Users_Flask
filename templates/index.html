@@ -8,12 +8,21 @@
     <a href ="/viewCountries">List All Countries</a><br><br>  
     <a href="/viewUsers">List All Users</a><br><br>
     <a href="/viewAll">Who Added What</a><br><br>
-    <form action = "/searchUser" method="post">  
-      <table>  
-        <tr><td>User Search</td><td><input type="text" name="user"></td></tr> 
-        <tr><td><input type="submit" value="Submit"></td></tr>  
-      </table>  
-    </form>
- 
+    <div>
+      <form action = "/searchUser" method="post">  
+        <table>  
+          <tr><td>User Search</td><td><input type="text" name="user"></td></tr> 
+          <tr><td><input type="submit" value="Submit"></td></tr>  
+        </table>  
+      </form>
+    </div>
+    <div>
+      <form action = "/searchCountry" method="post">  
+        <table>  
+          <tr><td>Country Search</td><td><input type="text" name="country"></td></tr> 
+          <tr><td><input type="submit" value="Submit"></td></tr>  
+        </table>  
+      </form>
+    </div>
 </body>  
 </html>
